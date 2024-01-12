@@ -6,6 +6,13 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Content = styled.main`
-  flex: 1;
+export const SidebarWrapper = styled.div`
+  display: flex;
+  height: calc(100vh);
+`;
+
+export const MainContent = styled.main`
+  flex-grow: 1; // elemento a crescer e ocupar todo o espaço disponível dentro do contêiner Flexbox.
+
+  overflow-y: auto; // Se o conteúdo for muito longo, permitirá a rolagem
 `;

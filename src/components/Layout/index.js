@@ -1,17 +1,21 @@
 import React from "react";
 import NavBar from "../NavBar";
 
-import { Container, Content } from "./styles";
+import { Container, MainContent, SidebarWrapper } from "./styles";
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
+import Sidebar from "../SideBar";
 
 const Layout = () => {
   return (
     <Container>
-      <NavBar />
-      <Content>
-        <Outlet />
-      </Content>
+      <SidebarWrapper>
+        <Sidebar />
+        <MainContent>
+          <NavBar />
+          <Outlet />
+        </MainContent>
+      </SidebarWrapper>
       <Footer />
     </Container>
   );
