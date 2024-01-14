@@ -7,7 +7,7 @@ const Sidebar = () => {
         <UserPhoto />
         <p>Gabriel Lucas</p>
         <SidebarLink to="/pacientes">Pacientes</SidebarLink>
-        <SidebarLink to="/exames">Exames</SidebarLink>
+        <SidebarLink to="/plans">Planos</SidebarLink>
         <SidebarLink to="/agendamentos">Agendamentos</SidebarLink>
         <SidebarLink to="/financeiro">Financeiro</SidebarLink>
       </SidebarNav>
