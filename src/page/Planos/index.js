@@ -6,7 +6,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/planos")
+      .get("http://localhost:3000/v1/planos")
       .then((response) => {
         setPlanos(response.data);
       })
