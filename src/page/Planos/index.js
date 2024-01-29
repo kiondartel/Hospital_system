@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMedicalPlans } from "../../store/Actions/medicalPlansActions";
 
 const Services = () => {
-  const [planos, setPlanos] = useState([]);
+  const medicalPlans = useSelector((state) => state.medicalPlans);
+  const allPlans = medicalPlans.data;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/v1/planos")
-      .then((response) => {
-        setPlanos(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os planos!", error);
-      });
+    dispatch(fetchMedicalPlans());
   }, []);
 
   return (
     <div>
       <h1>Planos</h1>
       <ul>
-        {planos.map((plano) => (
+        {allPlans?.map((plano) => (
           <li key={plano.codigo}>
             {plano.nome} - R$ {plano.valor}
           </li>
