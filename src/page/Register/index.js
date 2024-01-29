@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { Form, Input, Button, DatePicker, Select, Steps } from "antd";
-import { FormContainer, StepsContainer, StyledButton } from "./styles";
+import { Form, Input, DatePicker, Select, Steps } from "antd";
+import {
+  ButtonsContainer,
+  FormContainer,
+  SmallInputContainer,
+  StepsContainer,
+  StyledButton,
+  Info,
+} from "./styles";
 
 const { Step } = Steps;
 const { Option } = Select;
@@ -31,29 +38,36 @@ const HospitalRegistrationForm = () => {
             <Form.Item name="nome" label="Nome">
               <Input />
             </Form.Item>
-            <Form.Item name="dataNascimento" label="Data de Nascimento">
-              <DatePicker />
-            </Form.Item>
+            <Info>
+              <Form.Item name="dataNascimento" label="Data de Nascimento">
+                <DatePicker />
+              </Form.Item>
+              <Form.Item name="genero" label="Gênero" style={{ width: "50%" }}>
+                <Select>
+                  <Option value="masculino">Masculino</Option>
+                  <Option value="feminino">Feminino</Option>
+                  <Option value="outro">Outro</Option>
+                </Select>
+              </Form.Item>
+            </Info>
             <Form.Item name="endereco" label="Endereço">
               <Input />
             </Form.Item>
-            <Form.Item name="email" label="E-mail">
-              <Input type="email" />
-            </Form.Item>
-            <Form.Item name="telefone" label="Telefone">
-              <Input />
-            </Form.Item>
-            <Form.Item name="genero" label="Gênero">
-              <Select>
-                <Option value="masculino">Masculino</Option>
-                <Option value="feminino">Feminino</Option>
-                <Option value="outro">Outro</Option>
-              </Select>
-            </Form.Item>
 
-            <StyledButton type="primary" onClick={nextStep}>
-              Próximo
-            </StyledButton>
+            <SmallInputContainer>
+              <Form.Item name="email" label="E-mail">
+                <Input className="smallInput" type="email" />
+              </Form.Item>
+              <Form.Item name="telefone" label="Telefone">
+                <Input className="smallInput" />
+              </Form.Item>
+            </SmallInputContainer>
+
+            <ButtonsContainer>
+              <StyledButton type="primary" onClick={nextStep}>
+                Próximo
+              </StyledButton>
+            </ButtonsContainer>
           </>
         )}
 
@@ -65,10 +79,12 @@ const HospitalRegistrationForm = () => {
                 <Option value="plano2">Plano 2</Option>
               </Select>
             </Form.Item>
-            <StyledButton onClick={prevStep}>Anterior</StyledButton>
-            <StyledButton type="primary" htmlType="submit">
-              Submeter
-            </StyledButton>
+            <ButtonsContainer>
+              <StyledButton onClick={prevStep}>Anterior</StyledButton>
+              <StyledButton type="primary" htmlType="submit">
+                Submeter
+              </StyledButton>
+            </ButtonsContainer>
           </>
         )}
       </Form>
