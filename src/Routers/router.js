@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../components/Layout";
 import Services from "../modules/Planos";
 import Patients from "../modules/Patients";
-import HospitalRegistrationForm from "../modules/Register";
+import HospitalRegistrationForm from "../modules/Register/Pages/NewPatient";
 
 const Router = () => {
   return (
