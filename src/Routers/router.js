@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Layout from "../components/Layout";
 import Services from "../page/Planos";
-import Patients from "../page/Patients";
-import HospitalRegistrationForm from "../page/Register";
+import Patients from "../modules/Patients";
+import HospitalRegistrationForm from "../modules/Register";
 
 const Router = () => {
   return (
