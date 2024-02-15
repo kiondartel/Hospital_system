@@ -3,7 +3,6 @@ import NavBar from "../NavBar";
 
 import { Container, MainContent, SidebarWrapper } from "./styles";
 import { Outlet } from "react-router-dom";
-import Footer from "../Footer";
 import Sidebar from "../SideBar";
 
 const Layout = () => {
@@ -16,7 +15,6 @@ const Layout = () => {
           <Outlet />
         </MainContent>
       </SidebarWrapper>
-      <Footer />
     </Container>
   );
 };
