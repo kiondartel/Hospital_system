@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUserMd, FaClipboardList, FaDollarSign } from "react-icons/fa";
-import { UserPhoto, SidebarContainer, StyledMenu } from "./styles";
+import {
+  UserPhoto,
+  SidebarContainer,
+  StyledMenu,
+  Links,
+  LinksContainer,
+} from "./styles";
 
 const MenuItemLink = ({ to, children }) => <Link to={to}>{children}</Link>;
 
@@ -16,10 +22,10 @@ const Sidebar = () => {
   const menuItems = [
     {
       label: (
-        <span>
-          <FaUserMd />
-          <span>Pacientes</span>
-        </span>
+        <LinksContainer>
+          <FaUserMd color="white" />
+          <Links>Pacientes</Links>
+        </LinksContainer>
       ),
       key: "sub1",
       children: [
@@ -39,10 +45,10 @@ const Sidebar = () => {
     },
     {
       label: (
-        <span>
-          <FaClipboardList />
-          <span>Planos</span>
-        </span>
+        <LinksContainer>
+          <FaClipboardList color="white" />
+          <Links>Planos</Links>
+        </LinksContainer>
       ),
       key: "sub2",
       children: [
@@ -54,10 +60,10 @@ const Sidebar = () => {
     },
     {
       label: (
-        <span>
-          <FaDollarSign />
-          <span>Financeiro</span>
-        </span>
+        <LinksContainer>
+          <FaDollarSign color="white" />
+          <Links>Financeiro</Links>
+        </LinksContainer>
       ),
       key: "sub3",
       children: [
@@ -82,7 +88,6 @@ const Sidebar = () => {
       <UserPhoto />
       <p>Gabriel Lucas</p>
       <StyledMenu
-        theme="dark"
         mode="inline"
         openKeys={openKeys}
         onOpenChange={onOpenChange}
