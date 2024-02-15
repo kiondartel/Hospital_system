@@ -14,5 +14,5 @@ export const SidebarWrapper = styled.div`
 export const MainContent = styled.main`
   flex-grow: 1; // elemento a crescer e ocupar todo o espaço disponível dentro do contêiner Flexbox.
 
-  overflow-y: auto; // Se o conteúdo for muito longo, permitirá a rolagem
+  background-color: #f2f1f1;
 `;
