@@ -1,4 +1,4 @@
-import { getAllPlans } from "../../service/MedicalPlans";
+import { getAllPlans } from "../../service/partageApi/MedicalPlans";
 import { setMedicalPlans } from "../Reducers/medicalPlansReducer";
 
 export const fetchMedicalPlans = () => async (dispath) => {
