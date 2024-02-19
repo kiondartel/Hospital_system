@@ -5,6 +5,8 @@ import {
   SmallInputContainer,
   Info,
   FormContent,
+  ButtonsContainer,
+  StyledButton,
 } from "./styles";
 import Planos from "../../components/Planos";
 import { useSelector } from "react-redux";
@@ -51,6 +53,11 @@ const HospitalRegistrationForm = () => {
             </Form.Item>
           </SmallInputContainer>
           <Planos />
+          <ButtonsContainer>
+            <StyledButton type="primary" htmlType="submit">
+              Cadastrar
+            </StyledButton>
+          </ButtonsContainer>
         </Form>
       </FormContent>
     </FormContainer>

@@ -33,11 +33,6 @@ const Planos = () => {
             ))}
         </Select>
       </Form.Item>
-      <ButtonsContainer>
-        <StyledButton type="primary" htmlType="submit">
-          Submeter
-        </StyledButton>
-      </ButtonsContainer>
     </Container>
   );
 };
