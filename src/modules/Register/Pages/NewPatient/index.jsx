@@ -40,14 +40,34 @@ const HospitalRegistrationForm = () => {
     <FormContainer>
       <FormContent>
         <Form onFinish={onFinish}>
-          <Form.Item name="nome" label="Nome">
+          <Form.Item
+            name="nome"
+            label="Nome"
+            rules={[{ required: true, message: "Por favor, insira seu nome!" }]}
+          >
             <Input />
           </Form.Item>
           <Info>
-            <Form.Item name="dataNascimento" label="Data de Nascimento">
+            <Form.Item
+              name="dataNascimento"
+              label="Data de Nascimento"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira sua data de nascimento!",
+                },
+              ]}
+            >
               <DatePicker />
             </Form.Item>
-            <Form.Item name="genero" label="Gênero" style={{ width: "50%" }}>
+            <Form.Item
+              name="genero"
+              label="Gênero"
+              style={{ width: "50%" }}
+              rules={[
+                { required: true, message: "Por favor, selecione seu gênero!" },
+              ]}
+            >
               <Select>
                 <Option value="masculino">Masculino</Option>
                 <Option value="feminino">Feminino</Option>
@@ -55,15 +75,33 @@ const HospitalRegistrationForm = () => {
               </Select>
             </Form.Item>
           </Info>
-          <Form.Item name="endereco" label="Endereço">
+          <Form.Item
+            name="endereco"
+            label="Endereço"
+            rules={[
+              { required: true, message: "Por favor, digite seu endereço!" },
+            ]}
+          >
             <Input />
           </Form.Item>
 
           <SmallInputContainer>
-            <Form.Item name="email" label="E-mail">
+            <Form.Item
+              name="email"
+              label="E-mail"
+              rules={[
+                { required: true, message: "Por favor, digite seu email!" },
+              ]}
+            >
               <Input className="smallInput" type="email" />
             </Form.Item>
-            <Form.Item name="telefone" label="Telefone">
+            <Form.Item
+              name="telefone"
+              label="Telefone"
+              rules={[
+                { required: true, message: "Por favor, digite seu telefone!" },
+              ]}
+            >
               <Input className="smallInput" />
             </Form.Item>
           </SmallInputContainer>

@@ -23,7 +23,11 @@ const Planos = () => {
   return (
     <Container>
       <h3>Nossos Planos</h3>
-      <Form.Item name="plano" label="Plano">
+      <Form.Item
+        name="plano"
+        label="Plano"
+        rules={[{ required: true, message: "Por favor, selecione seu Plano!" }]}
+      >
         <Select onChange={handleChange}>
           {medicalPlans.data &&
             medicalPlans.data.map((plan) => (
