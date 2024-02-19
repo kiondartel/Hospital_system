@@ -10,21 +10,36 @@ import {
 } from "./styles";
 import Planos from "../../components/Planos";
 import { useSelector } from "react-redux";
+import { UserService } from "../../../../service/partageApi/UserService";
 
 const { Option } = Select;
 
 const HospitalRegistrationForm = () => {
   const plan = useSelector((state) => state.plan);
-  console.log(plan.selectedPlan[0].codigo, "cu");
-  const handleSubmit = (values) => {
-    values.codigoPlano = plan.selectedPlan[0].codigo;
-    console.log("Form Data:", values);
-  };
 
+  const onFinish = async (values) => {
+    if (plan) {
+      const formattedDate = values.dataNascimento.format("YYYY-MM-DD");
+
+      const payload = {
+        ...values,
+        dataNascimento: formattedDate,
+        codigoPlano: plan.selectedPlan[0].codigo,
+      };
+
+      UserService.createUser(payload)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
   return (
     <FormContainer>
       <FormContent>
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={onFinish}>
           <Form.Item name="nome" label="Nome">
             <Input />
           </Form.Item>
