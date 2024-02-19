@@ -26,4 +26,5 @@ class BaseHttpClient {
   }
 }
 
-export default BaseHttpClient;
+const partageApi = new BaseHttpClient();
+export default partageApi;

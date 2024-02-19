@@ -1,9 +1,9 @@
-import BaseHttpClient from "./baseHttpClient";
+import partageApi from "./baseHttpClient";
 
 export const USERS_PATH = "/pacientes";
 
 export class UserService {
-  static async create(user) {
-    return BaseHttpClient.post(USERS_PATH, user);
+  static async createUser(user) {
+    return partageApi.post(USERS_PATH, user);
   }
 }
