@@ -1,11 +1,9 @@
-import axios from "axios";
+import partageApi from "./baseHttpClient";
 
-export async function getAllPlans() {
-  try {
-    const response = await axios.get("http://localhost:3000/v1/planos");
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    throw err;
+export const PLANS_PATH = "/planos";
+
+export class PlansService {
+  static async getAllPlans() {
+    return partageApi.get(PLANS_PATH);
   }
 }

@@ -1,10 +1,10 @@
-import { getAllPlans } from "../../service/partageApi/MedicalPlansService";
+import { PlansService } from "../../service/partageApi/MedicalPlansService";
 import { setMedicalPlans } from "../Reducers/medicalPlansReducer";
 
-export const fetchMedicalPlans = () => async (dispath) => {
+export const fetchMedicalPlans = () => async (dispatch) => {
   try {
-    const plans = await getAllPlans();
-    dispath(setMedicalPlans(plans));
+    const response = await PlansService.getAllPlans();
+    dispatch(setMedicalPlans(response.data));
   } catch (err) {
     console.error(err);
   }
