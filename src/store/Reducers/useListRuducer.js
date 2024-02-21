@@ -9,7 +9,7 @@ export const listUsersSlice = createSlice({
   initialState,
   reducers: {
     setListUsers: (state, { payload }) => {
-      state.initialState = payload;
+      state.data = payload;
     },
   },
 });
