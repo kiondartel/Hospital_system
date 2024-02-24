@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Divider, Table, message } from "antd";
+import { Divider, Table } from "antd";
 
 import { Container, Content, StyledSearch } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../store/Actions/UsersActions";
-import Search from "antd/es/input/Search";
 
 const PatientList = () => {
   const users = useSelector((state) => state.users);
