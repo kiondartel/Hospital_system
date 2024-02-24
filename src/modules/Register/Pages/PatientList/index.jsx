@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Table, message } from "antd";
+import { Divider, Table, message } from "antd";
 
-import { Container, SearchBar } from "./styles";
+import { Container, Content, StyledSearch } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../store/Actions/UsersActions";
+import Search from "antd/es/input/Search";
 
 const PatientList = () => {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
-
+  const [searchText, setSearchText] = useState("");
   const columns = [
     {
       title: "Nome",
@@ -32,14 +33,27 @@ const PatientList = () => {
       render: (plano) => plano?.nome,
     },
   ];
+  const onSearch = (value) => {
+    setSearchText(value.toLowerCase());
+  };
 
+  const filteredUsers = users.data.filter((user) =>
+    user.nome.toLowerCase().includes(searchText)
+  );
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
 
   return (
     <Container>
-      <Table dataSource={users.data} columns={columns} />
+      <Content>
+        <Divider />
+        <StyledSearch
+          placeholder="Digite o nome do paciente"
+          onSearch={onSearch}
+        />
+        <Table dataSource={filteredUsers} columns={columns} />
+      </Content>
     </Container>
   );
 };
