@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Layout from "../components/Layout";
 import Services from "../modules/Planos";
-import Patients from "../modules/Patients";
 import HospitalRegistrationForm from "../modules/Register/Pages/NewPatient";
+import PatientList from "../modules/Register/Pages/PatientList";
 
 const Router = () => {
   return (
@@ -11,8 +11,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HospitalRegistrationForm />} />
+          <Route path="patient/list" element={<PatientList />} />
           <Route path="plans" element={<Services />} />
-          <Route path="pacientes" element={<Patients />} />
         </Route>
       </Routes>
     </BrowserRouter>

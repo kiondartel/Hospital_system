@@ -35,9 +35,7 @@ const Sidebar = () => {
         },
         {
           label: (
-            <MenuItemLink to="/pacientes/lista">
-              Lista de Pacientes
-            </MenuItemLink>
+            <MenuItemLink to="/patient/list">Lista de Pacientes</MenuItemLink>
           ),
           key: "2",
         },
