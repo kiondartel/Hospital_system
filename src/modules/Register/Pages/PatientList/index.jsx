@@ -46,11 +46,11 @@ const PatientList = () => {
   return (
     <Container>
       <Content>
-        <Divider />
         <StyledSearch
           placeholder="Digite o nome do paciente"
           onSearch={onSearch}
         />
+        <Divider />
         <Table dataSource={filteredUsers} columns={columns} />
       </Content>
     </Container>
