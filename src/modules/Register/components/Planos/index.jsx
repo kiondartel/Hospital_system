@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { Form, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Container } from "./styles";
-import { ButtonsContainer, StyledButton } from "./styles";
+import { FaMarkdown } from "react-icons/fa";
 import { fetchMedicalPlans } from "../../../../store/Actions/medicalPlansActions";
 import { setSelectedPlan } from "../../../../store/Reducers/selectPlanReducer";
+import { CustomIcon } from "../../../../components/CustomIcon";
 const { Option } = Select;
 
 const Planos = () => {
@@ -25,7 +26,11 @@ const Planos = () => {
       <h3>Nossos Planos</h3>
       <Form.Item
         name="plano"
-        label="Plano"
+        label={
+          <>
+            <CustomIcon icon={<FaMarkdown />} /> Telefone
+          </>
+        }
         rules={[{ required: true, message: "Por favor, selecione seu Plano!" }]}
       >
         <Select onChange={handleChange}>

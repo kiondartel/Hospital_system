@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, DatePicker, Select } from "antd";
 import {
-  FormContainer,
   SmallInputContainer,
   Info,
-  FormContent,
   ButtonsContainer,
   StyledButton,
+  FormContainer,
+  FormContent,
 } from "./styles";
 import Planos from "../../components/Planos";
 import { useSelector } from "react-redux";
 import { UserService } from "../../../../service/partageApi/UserService";
+import {
+  FaBirthdayCake,
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaTransgender,
+} from "react-icons/fa";
+import { CustomIcon } from "../../../../components/CustomIcon";
 
 const { Option } = Select;
 
@@ -39,10 +48,15 @@ const HospitalRegistrationForm = () => {
   return (
     <FormContainer>
       <FormContent>
+        <h1>Cadastro de pacientes</h1>
         <Form onFinish={onFinish}>
           <Form.Item
             name="nome"
-            label="Nome"
+            label={
+              <>
+                <CustomIcon icon={<FaUser />} /> Nome
+              </>
+            }
             rules={[{ required: true, message: "Por favor, insira seu nome!" }]}
           >
             <Input />
@@ -50,7 +64,12 @@ const HospitalRegistrationForm = () => {
           <Info>
             <Form.Item
               name="dataNascimento"
-              label="Data de Nascimento"
+              label={
+                <>
+                  <CustomIcon icon={<FaBirthdayCake />} />
+                  Data de Nascimento
+                </>
+              }
               rules={[
                 {
                   required: true,
@@ -62,7 +81,12 @@ const HospitalRegistrationForm = () => {
             </Form.Item>
             <Form.Item
               name="genero"
-              label="Gênero"
+              label={
+                <>
+                  <CustomIcon icon={<FaTransgender />} />
+                  Genero
+                </>
+              }
               style={{ width: "50%" }}
               rules={[
                 { required: true, message: "Por favor, selecione seu gênero!" },
@@ -77,7 +101,11 @@ const HospitalRegistrationForm = () => {
           </Info>
           <Form.Item
             name="endereco"
-            label="Endereço"
+            label={
+              <>
+                <CustomIcon icon={<FaMapMarkerAlt />} /> Endereço
+              </>
+            }
             rules={[
               { required: true, message: "Por favor, digite seu endereço!" },
             ]}
@@ -88,7 +116,11 @@ const HospitalRegistrationForm = () => {
           <SmallInputContainer>
             <Form.Item
               name="email"
-              label="E-mail"
+              label={
+                <>
+                  <CustomIcon icon={<FaEnvelope />} /> Endereço
+                </>
+              }
               rules={[
                 { required: true, message: "Por favor, digite seu email!" },
               ]}
@@ -97,7 +129,11 @@ const HospitalRegistrationForm = () => {
             </Form.Item>
             <Form.Item
               name="telefone"
-              label="Telefone"
+              label={
+                <>
+                  <CustomIcon icon={<FaPhone />} /> Endereço
+                </>
+              }
               rules={[
                 { required: true, message: "Por favor, digite seu telefone!" },
               ]}
