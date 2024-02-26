@@ -14,6 +14,6 @@ export const Content = styled.div`
 `;
 export const StyledSearch = styled(Search)`
   width: 450px;
-  margin-bottom: 16px;
-  margin-left: 10px;
+  margin: 20px 0px 0px 20px;
+  border: none;
 `;
