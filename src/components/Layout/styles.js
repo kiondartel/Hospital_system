@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const SidebarWrapper = styled.div`
   display: flex;
-  height: calc(100vh);
+  min-height: 100vh;
 `;
 
 export const MainContent = styled.main`
