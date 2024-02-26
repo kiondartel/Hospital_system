@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Layout from "../components/Layout";
-import Services from "../modules/Planos";
+import Services from "../modules/Planos/Page/PlanManagement/index";
 import HospitalRegistrationForm from "../modules/Register/Pages/NewPatient";
 import PatientList from "../modules/Register/Pages/PatientList";
 
