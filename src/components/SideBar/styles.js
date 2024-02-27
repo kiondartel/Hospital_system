@@ -26,7 +26,6 @@ export const UserPhoto = styled.img`
 export const LinksContainer = styled.span`
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
 `;
 export const Links = styled.label`
@@ -41,10 +40,24 @@ export const StyledMenu = styled(Menu)`
   background-color: #293846;
   margin-top: 10px;
   width: 250px;
+  border-radius: 10px;
+  /* Estilos para as setas do submenu */
+  .ant-menu-submenu-arrow::before,
+  .ant-menu-submenu-arrow::after {
+    background-color: white !important;
+  }
+
+  /* Estilos para os itens do submenu */
+  .ant-menu-sub:not(.ant-menu-submenu-disabled) .ant-menu-item {
+    color: #a7b1c2;
+  }
+  .ant-menu-item-active,
+  .ant-menu-item-selected {
+    background-color: #293846 !important;
+  }
   .ant-menu-submenu-open,
   .ant-menu-item-selected {
     border-left: 4px solid #5c40ff;
-    background-color: #ffff;
   }
   .ant-menu-item {
     border-left: 4px solid transparent !important;
