@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Divider, Table } from "antd";
+import { Button, Divider, Table } from "antd";
 
-import { Container, Content, StyledSearch } from "./styles";
+import {
+  Container,
+  Content,
+  SearchAndButtonContainer,
+  StyledSearch,
+} from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../store/Actions/UsersActions";
+import HospitalRegistrationModal from "../../components/Planos/HospitalRegistrationModal";
 
 const PatientList = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  const [searchText, setSearchText] = useState("");
   const columns = [
     {
       title: "Nome",
@@ -39,6 +46,8 @@ const PatientList = () => {
   const filteredUsers = users.data.filter((user) =>
     user.nome.toLowerCase().includes(searchText)
   );
+  const showModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
@@ -46,12 +55,18 @@ const PatientList = () => {
   return (
     <Container>
       <Content>
-        <StyledSearch
-          placeholder="Digite o nome do paciente"
-          onSearch={onSearch}
-        />
+        <SearchAndButtonContainer>
+          <StyledSearch
+            placeholder="Digite o nome do paciente"
+            onSearch={onSearch}
+          />
+          <Button type="primary" onClick={showModal}>
+            Cadastrar Novo Paciente
+          </Button>
+        </SearchAndButtonContainer>
         <Divider />
         <Table dataSource={filteredUsers} columns={columns} />
+        <HospitalRegistrationModal open={isModalVisible} onClose={closeModal} />
       </Content>
     </Container>
   );
