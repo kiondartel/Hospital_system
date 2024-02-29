@@ -10,6 +10,6 @@ export class PlansService {
     return partageApi.post(PLANS_PATH, payload);
   }
   static async deletePlan(planName) {
-    return partageApi.delete(PLANS_PATH, planName);
+    return partageApi.delete(`${PLANS_PATH}/${planName}`);
   }
 }
