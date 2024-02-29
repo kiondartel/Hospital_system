@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchMedicalPlans } from "../../../../store/Actions/medicalPlansActions";
+import {
+  createNewPlan,
+  deletePlanByName,
+  fetchMedicalPlans,
+} from "../../../../store/Actions/medicalPlansActions";
 import { List, Button } from "antd";
 import {
   PlanActions,
@@ -19,8 +23,13 @@ const PlansManagement = () => {
   const dispatch = useDispatch();
 
   const handleCreatePlan = (planData) => {
-    console.log("New Plan Data:", planData);
+    planData.ativo = true;
+    dispatch(createNewPlan(planData));
     setIsModalVisible(false);
+  };
+
+  const deletePlan = (planName) => {
+    dispatch(deletePlanByName(planName));
   };
 
   useEffect(() => {
@@ -51,7 +60,9 @@ const PlansManagement = () => {
             </div>
             <PlanActions>
               <Button type="primary">Editar</Button>
-              <Button type="danger">Deletar</Button>
+              <Button type="danger" onClick={() => deletePlan(plano.nome)}>
+                Deletar
+              </Button>
             </PlanActions>
           </StyledListItem>
         )}
