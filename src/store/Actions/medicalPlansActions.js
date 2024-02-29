@@ -1,3 +1,4 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { PlansService } from "../../service/partageApi/MedicalPlansService";
 import { setMedicalPlans } from "../Reducers/medicalPlansReducer";
 import { notification } from "antd";
@@ -27,3 +28,20 @@ export const createNewPlan = async (payload) => {
     });
   }
 };
+
+export const deletePlanByName = createAsyncThunk(
+  "medicalPlans/deletePlanByName",
+  async (planName, { rejectWithValue }) => {
+    try {
+      const deletePlan = await PlansService.deletePlan(planName);
+      const message = deletePlan.data;
+      notification.success({
+        message: message,
+      });
+      return planName;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.data);
+    }
+  }
+);
