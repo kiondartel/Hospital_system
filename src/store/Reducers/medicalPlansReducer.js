@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deletePlanByName } from "../Actions/medicalPlansActions";
+import {
+  createNewPlan,
+  deletePlanByName,
+} from "../Actions/medicalPlansActions";
 
 const initialState = {
   plano: {
@@ -19,9 +22,15 @@ const sliceMedicalPlans = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(deletePlanByName.fulfilled, (state, action) => {
-      state.data = state.data.filter((plano) => plano.nome !== action.payload);
-    });
+    builder
+      .addCase(deletePlanByName.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (plano) => plano.nome !== action.payload
+        );
+      })
+      .addCase(createNewPlan.fulfilled, (state, action) => {
+        state.data = [...state.data, action.payload];
+      });
   },
 });
 

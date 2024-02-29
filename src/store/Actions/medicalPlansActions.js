@@ -15,19 +15,21 @@ export const fetchMedicalPlans = () => async (dispatch) => {
   }
 };
 
-export const createNewPlan = async (payload) => {
-  try {
-    await PlansService.createPlan(payload);
-    return notification.success({
-      message: "Plano criado com sucesso!",
-    });
-  } catch (err) {
-    console.log(err);
-    return notification.error({
-      message: "Erro ao criar plano",
-    });
+export const createNewPlan = createAsyncThunk(
+  "medicalPlans/createNewPlan",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await PlansService.createPlan(payload);
+      notification.success({
+        message: "Plano criado com sucesso!",
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.data);
+    }
   }
-};
+);
 
 export const deletePlanByName = createAsyncThunk(
   "medicalPlans/deletePlanByName",
