@@ -30,14 +30,10 @@ const Sidebar = () => {
       key: "sub1",
       children: [
         {
-          label: <MenuItemLink to="/">Novo Paciente</MenuItemLink>,
-          key: "1",
-        },
-        {
           label: (
             <MenuItemLink to="/patient/list">Lista de Pacientes</MenuItemLink>
           ),
-          key: "2",
+          key: "1",
         },
       ],
     },
