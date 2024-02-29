@@ -24,6 +24,10 @@ class BaseHttpClient {
   put(url, data) {
     return this.instance.put(url, data);
   }
+
+  delete(url, config) {
+    return this.instance.delete(url, config);
+  }
 }
 
 const partageApi = new BaseHttpClient();
