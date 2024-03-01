@@ -13,7 +13,7 @@ import {
   Legend,
 } from "chart.js";
 import { chartConfig } from "./Utils/chartConfig";
-import { Container } from "./styles";
+import { Container, CustomStatistic } from "./styles";
 
 import { UserOutlined, MedicineBoxOutlined } from "@ant-design/icons";
 import LatestUsers from "./Components/LatestUsers";
@@ -35,18 +35,22 @@ const HospitalDashboard = () => {
   const employee = 25;
   const pacientes = 125;
   const valueStyle = {
-    color: "#0f1215",
+    color: "#f2f3f3",
   };
   const cardStyle = {
     textAlign: "center",
-    backgroundColor: "#fcfcfc",
+    backgroundColor: "#847cd6",
+  };
+  const cardStyle2 = {
+    textAlign: "center",
+    backgroundColor: "#7acad6",
   };
   return (
     <Container>
       <Row gutter={16}>
         <Col span={12}>
-          <Card style={cardStyle}>
-            <Statistic
+          <Card style={cardStyle2}>
+            <CustomStatistic
               title="Número de Pacientes"
               value={pacientes}
               valueStyle={valueStyle}
@@ -56,7 +60,7 @@ const HospitalDashboard = () => {
         </Col>
         <Col span={12}>
           <Card style={cardStyle}>
-            <Statistic
+            <CustomStatistic
               title="Número de Funcionários"
               value={employee}
               valueStyle={valueStyle}
