@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUserMd, FaClipboardList, FaDollarSign } from "react-icons/fa";
+import {
+  FaUserMd,
+  FaClipboardList,
+  FaDollarSign,
+  FaHome,
+} from "react-icons/fa";
 import {
   UserPhoto,
   SidebarContainer,
@@ -9,7 +14,11 @@ import {
   LinksContainer,
 } from "./styles";
 
-const MenuItemLink = ({ to, children }) => <Link to={to}>{children}</Link>;
+const MenuItemLink = ({ to, children }) => (
+  <Link style={{ color: "#fff" }} to={to}>
+    {children}
+  </Link>
+);
 
 const Sidebar = () => {
   const [openKeys, setOpenKeys] = useState([]);
@@ -20,6 +29,17 @@ const Sidebar = () => {
   };
 
   const menuItems = [
+    {
+      label: (
+        <LinksContainer>
+          <FaHome color="white" style={{ marginRight: "0px" }} />
+          <MenuItemLink to="/" color="#a7b1c2">
+            Dashboard
+          </MenuItemLink>
+        </LinksContainer>
+      ),
+      key: "0",
+    },
     {
       label: (
         <LinksContainer>
