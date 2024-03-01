@@ -16,6 +16,7 @@ import { chartConfig } from "./Utils/chartConfig";
 import { Container } from "./styles";
 
 import { UserOutlined, MedicineBoxOutlined } from "@ant-design/icons";
+import LatestUsers from "./Components/LatestUsers";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -73,6 +74,11 @@ const HospitalDashboard = () => {
             </Typography>
             <Line data={data} options={chartConfig.options} key={updateData} />
           </CardContent>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "20px" }}>
+        <Col span={24}>
+          <LatestUsers />
         </Col>
       </Row>
     </Container>
