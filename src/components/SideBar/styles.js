@@ -7,27 +7,31 @@ export const SidebarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #2f4050;
-  padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 
   p {
     color: #dfe4ed;
-    font-weight: 600;
+    font-weight: bold;
   }
 `;
+export const MenuWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
+  width: 100%;
+`;
 export const UserPhoto = styled.img`
   content: url(${user});
-  max-width: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  margin-top: 3rem;
 `;
-export const LinksContainer = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
+
 export const Links = styled.label`
   color: #ffff;
 
@@ -39,8 +43,10 @@ export const Links = styled.label`
 export const StyledMenu = styled(Menu)`
   background-color: #293846;
   margin-top: 10px;
-  width: 250px;
+  width: 100%;
+
   border-radius: 10px;
+
   /* Estilos para as setas do submenu */
   .ant-menu-submenu-arrow::before,
   .ant-menu-submenu-arrow::after {
@@ -61,5 +67,8 @@ export const StyledMenu = styled(Menu)`
   }
   .ant-menu-item {
     border-left: 4px solid transparent !important;
+  }
+  .ant-menu-submenu-title {
+    padding: 30px;
   }
 `;
