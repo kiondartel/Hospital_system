@@ -57,7 +57,7 @@ export const StyledMenu = styled(Menu)`
   }
   .ant-menu-submenu-open,
   .ant-menu-item-selected {
-    border-left: 4px solid #5c40ff;
+    border-left: 4px solid #fff;
   }
   .ant-menu-item {
     border-left: 4px solid transparent !important;
