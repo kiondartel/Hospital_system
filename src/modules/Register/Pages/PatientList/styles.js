@@ -11,10 +11,11 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  padding: 15px;
 `;
 export const SearchAndButtonContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
 `;
