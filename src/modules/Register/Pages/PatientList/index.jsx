@@ -12,10 +12,17 @@ import { getAllUsers } from "../../../../store/Actions/UsersActions";
 import HospitalRegistrationModal from "../../components/Planos/HospitalRegistrationModal";
 
 const PatientList = () => {
+  const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [pageSize, setPageSize] = useState(10);
   const users = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+  const filteredUsers = users.data.filter((user) =>
+    user.nome.toLowerCase().includes(searchText)
+  );
+  const showModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
+
   const columns = [
     {
       title: "Nome",
@@ -39,17 +46,27 @@ const PatientList = () => {
       render: (plano) => plano?.nome,
     },
   ];
+
   const onSearch = (value) => {
     setSearchText(value.toLowerCase());
   };
 
-  const filteredUsers = users.data.filter((user) =>
-    user.nome.toLowerCase().includes(searchText)
-  );
-  const showModal = () => setIsModalVisible(true);
-  const closeModal = () => setIsModalVisible(false);
   useEffect(() => {
     dispatch(getAllUsers());
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const availableHeight =
+        window.innerHeight -
+        document.getElementById("myTable").getBoundingClientRect().top;
+      const rowHeight = 50;
+      const visibleRows = Math.floor(availableHeight / rowHeight);
+      setPageSize(visibleRows);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -65,7 +82,12 @@ const PatientList = () => {
           </Button>
         </SearchAndButtonContainer>
         <Divider />
-        <Table dataSource={filteredUsers} columns={columns} />
+        <Table
+          id="myTable" // Make sure to give your table an id or use another method to reference it
+          dataSource={filteredUsers}
+          columns={columns}
+          pagination={{ pageSize: pageSize }}
+        />
         <HospitalRegistrationModal open={isModalVisible} onClose={closeModal} />
       </Content>
     </Container>
