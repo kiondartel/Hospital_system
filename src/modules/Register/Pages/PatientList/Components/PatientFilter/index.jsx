@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Input, Select } from "antd";
+import { Input, Select, DatePicker } from "antd";
 import { Container, InputContainer, Label } from "./styles";
 
+const { RangePicker } = DatePicker;
 const { Search } = Input;
 const { Option } = Select;
 
 const FilterComponent = ({ medicalPlans, onSearch, onFilterChange }) => {
   const [searchText, setSearchText] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("");
-
+  const [dates, setDates] = useState([]);
   const handleSearch = (value) => {
     setSearchText(value);
     onSearch(value);
@@ -19,6 +20,10 @@ const FilterComponent = ({ medicalPlans, onSearch, onFilterChange }) => {
     onFilterChange("plano", value);
   };
 
+  const handleDateChange = (dates, dateStrings) => {
+    setDates(dates);
+    onFilterChange("datas", dateStrings);
+  };
   return (
     <Container>
       <InputContainer>
@@ -43,6 +48,10 @@ const FilterComponent = ({ medicalPlans, onSearch, onFilterChange }) => {
               </Option>
             ))}
         </Select>
+      </InputContainer>
+      <InputContainer>
+        <Label htmlFor="dateRange">Data</Label>
+        <RangePicker onChange={handleDateChange} format="DD/MM/YYYY" />
       </InputContainer>
     </Container>
   );

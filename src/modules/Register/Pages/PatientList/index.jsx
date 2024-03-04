@@ -16,15 +16,24 @@ const PatientList = () => {
     nome: "",
     plano: "",
     genero: "",
+    dataInicio: null,
+    dataFim: null,
   });
   const [pageSize, setPageSize] = useState(10);
   const users = useSelector((state) => state.users);
-  const filteredUsers = users.data.filter(
-    (user) =>
+  const filteredUsers = users.data.filter((user) => {
+    const createdAt = new Date(user.createdAt);
+    const dataInicio = filters.dataInicio ? new Date(filters.dataInicio) : null;
+    const dataFim = filters.dataFim ? new Date(filters.dataFim) : null;
+
+    return (
       user.nome.toLowerCase().includes(filters.nome) &&
       (!filters.plano || user.plano.nome === filters.plano) &&
-      (!filters.genero || user.genero === filters.genero)
-  );
+      (!filters.genero || user.genero === filters.genero) &&
+      (!dataInicio || createdAt >= dataInicio) &&
+      (!dataFim || createdAt <= dataFim)
+    );
+  });
   const showModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
 
@@ -57,7 +66,12 @@ const PatientList = () => {
   };
 
   const handleFilterChange = (key, value) => {
-    setFilters({ ...filters, [key]: value });
+    if (key === "datas") {
+      const [dataInicio, dataFim] = value;
+      setFilters({ ...filters, dataInicio, dataFim });
+    } else {
+      setFilters({ ...filters, [key]: value });
+    }
   };
 
   useEffect(() => {
