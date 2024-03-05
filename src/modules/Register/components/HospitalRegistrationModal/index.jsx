@@ -1,5 +1,5 @@
 import { Drawer } from "antd";
-import HospitalRegistrationForm from "../../../Pages/PatientList/Components/NewPatient";
+import HospitalRegistrationForm from "../../Pages/PatientList/Components/NewPatient";
 
 const HospitalRegistrationModal = ({ open, onClose }) => {
   return (
