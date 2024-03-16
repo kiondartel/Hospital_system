@@ -12,4 +12,7 @@ export class PlansService {
   static async deletePlan(planName) {
     return partageApi.delete(`${PLANS_PATH}/${planName}`);
   }
+  static async updatePlan(codigo, payload) {
+    return partageApi.put(`${PLANS_PATH}/${codigo}`, payload);
+  }
 }
