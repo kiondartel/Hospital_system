@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   createNewPlan,
   deletePlanByName,
+  updatePlan,
 } from "../Actions/medicalPlansActions";
 
 const initialState = {
@@ -30,6 +31,11 @@ const sliceMedicalPlans = createSlice({
       })
       .addCase(createNewPlan.fulfilled, (state, action) => {
         state.data = [...state.data, action.payload];
+      })
+      .addCase(updatePlan.fulfilled, (state, action) => {
+        state.data = state.data.map((plano) =>
+          plano.codigo === action.payload.codigo ? action.payload : plano
+        );
       });
   },
 });
