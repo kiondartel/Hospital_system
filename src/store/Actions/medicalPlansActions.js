@@ -47,3 +47,20 @@ export const deletePlanByName = createAsyncThunk(
     }
   }
 );
+
+export const updatePlan = createAsyncThunk(
+  "medicalPlans/updatePlan",
+  async ({ codigo, data }, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await PlansService.updatePlan(codigo, data);
+      dispatch(setMedicalPlans(response.data));
+      notification.success({
+        message: "Plano atualizado com sucesso!",
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error.data);
+    }
+  }
+);
