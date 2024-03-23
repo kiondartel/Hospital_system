@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Form, Input, InputNumber, Button } from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 const CreatePlanModal = ({ isOpen, onOk, onCancel }) => {
   const [form] = Form.useForm();
@@ -40,6 +41,15 @@ const CreatePlanModal = ({ isOpen, onOk, onCancel }) => {
           ]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          name="procedimentos"
+          label="Procedimentos com cobertura"
+          rules={[
+            { required: true, message: "Por favor, insira os rocedimentos!" },
+          ]}
+        >
+          <TextArea />
         </Form.Item>
         <Form.Item
           name="valor"
