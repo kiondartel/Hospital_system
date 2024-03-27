@@ -4,13 +4,17 @@ import { Button, Divider, Table } from "antd";
 import { Container, Content, SearchAndButtonContainer } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../store/Actions/UsersActions";
-import HospitalRegistrationModal from "../../components/Planos/HospitalRegistrationModal";
 import FilterComponent from "./Components/PatientFilter";
 import { fetchMedicalPlans } from "../../../../store/Actions/medicalPlansActions";
+import HospitalRegistrationModal from "../../components/HospitalRegistrationModal";
+import formatDate from "../../../Utils/dateUtils";
+import UserDetailsModal from "../../../../components/UserDetailsModal";
 
 const PatientList = () => {
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isProntuarioVisible, setProntuarioVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const medicalPlans = useSelector((state) => state.medicalPlans);
   const [filters, setFilters] = useState({
     nome: "",
@@ -59,12 +63,38 @@ const PatientList = () => {
       key: "plano.nome",
       render: (plano) => plano?.nome,
     },
+    {
+      title: "Data da entrada",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => formatDate(createdAt),
+    },
+    {
+      title: "Prontuario",
+      key: "nome",
+      render: (text, record) => (
+        <Button
+          type="primary"
+          style={{ backgroundColor: "#847cd6" }}
+          onClick={() => showUserDetails(record)}
+        >
+          Ver Prontuário
+        </Button>
+      ),
+    },
   ];
 
   const handleSearch = (value) => {
     setFilters({ ...filters, nome: value.toLowerCase() });
   };
+  const showUserDetails = (user) => {
+    setSelectedUser(user);
+    setProntuarioVisible(true);
+  };
 
+  const handleModalClose = () => {
+    setProntuarioVisible(false);
+  };
   const handleFilterChange = (key, value) => {
     if (key === "datas") {
       const [dataInicio, dataFim] = value;
@@ -95,10 +125,19 @@ const PatientList = () => {
 
   return (
     <Container>
+      <UserDetailsModal
+        user={selectedUser}
+        isVisible={isProntuarioVisible}
+        handleClose={handleModalClose}
+      />
       <Content>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <h3>Lista de Pacientes</h3>
-          <Button type="primary" onClick={showModal}>
+          <h3> Pacientes</h3>
+          <Button
+            type="primary"
+            onClick={showModal}
+            style={{ backgroundColor: "#847cd6" }}
+          >
             Cadastrar Novo Paciente
           </Button>
         </div>
@@ -117,6 +156,7 @@ const PatientList = () => {
           columns={columns}
           pagination={{ pageSize: pageSize }}
         />
+
         <HospitalRegistrationModal open={isModalVisible} onClose={closeModal} />
       </Content>
     </Container>
