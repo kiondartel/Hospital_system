@@ -23,12 +23,11 @@ const Planos = () => {
 
   return (
     <Container>
-      <h3>Nossos Planos</h3>
       <Form.Item
         name="plano"
         label={
           <>
-            <CustomIcon icon={<FaMarkdown />} /> Telefone
+            <CustomIcon icon={<FaMarkdown />} /> Planos
           </>
         }
         rules={[{ required: true, message: "Por favor, selecione seu Plano!" }]}
