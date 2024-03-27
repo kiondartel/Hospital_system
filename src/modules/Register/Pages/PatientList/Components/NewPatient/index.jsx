@@ -1,11 +1,6 @@
 import React from "react";
-import { Form, Input, DatePicker, Select } from "antd";
-import {
-  SmallInputContainer,
-  Info,
-  ButtonsContainer,
-  StyledButton,
-} from "./styles";
+import { Form, Input, DatePicker, Select, notification } from "antd";
+import { Info, ButtonsContainer, StyledButton } from "./styles";
 import Planos from "../../../../components/Planos";
 import { useSelector } from "react-redux";
 import { UserService } from "../../../../../../service/partageApi/UserService";
@@ -16,12 +11,14 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaTransgender,
+  FaNotesMedical,
 } from "react-icons/fa";
 import { CustomIcon } from "../../../../../../components/CustomIcon";
 
 const { Option } = Select;
 
 const HospitalRegistrationForm = () => {
+  const [form] = Form.useForm();
   const plan = useSelector((state) => state.plan);
 
   const onFinish = async (values) => {
@@ -37,6 +34,11 @@ const HospitalRegistrationForm = () => {
       UserService.createUser(payload)
         .then((result) => {
           console.log(result);
+          notification.open({
+            message: "Usuário Criado",
+            type: "success",
+          });
+          form.resetFields();
         })
         .catch((error) => {
           console.log(error);
@@ -58,21 +60,17 @@ const HospitalRegistrationForm = () => {
       </Form.Item>
       <Info>
         <Form.Item
-          name="dataNascimento"
+          name="telefone"
           label={
             <>
-              <CustomIcon icon={<FaBirthdayCake />} />
-              Data de Nascimento
+              <CustomIcon icon={<FaPhone />} /> Telefone
             </>
           }
           rules={[
-            {
-              required: true,
-              message: "Por favor, insira sua data de nascimento!",
-            },
+            { required: true, message: "Por favor, digite seu telefone!" },
           ]}
         >
-          <DatePicker />
+          <Input className="smallInput" />
         </Form.Item>
         <Form.Item
           name="genero"
@@ -106,35 +104,59 @@ const HospitalRegistrationForm = () => {
         <Input />
       </Form.Item>
 
-      <SmallInputContainer>
+      <Form.Item
+        name="email"
+        label={
+          <>
+            <CustomIcon icon={<FaEnvelope />} /> Email
+          </>
+        }
+        rules={[{ required: true, message: "Por favor, digite seu email!" }]}
+      >
+        <Input className="smallInput" type="email" />
+      </Form.Item>
+      <Info>
         <Form.Item
-          name="email"
+          name="dataNascimento"
           label={
             <>
-              <CustomIcon icon={<FaEnvelope />} /> Endereço
-            </>
-          }
-          rules={[{ required: true, message: "Por favor, digite seu email!" }]}
-        >
-          <Input className="smallInput" type="email" />
-        </Form.Item>
-        <Form.Item
-          name="telefone"
-          label={
-            <>
-              <CustomIcon icon={<FaPhone />} /> Endereço
+              <CustomIcon icon={<FaBirthdayCake />} />
+              Data de Nascimento
             </>
           }
           rules={[
-            { required: true, message: "Por favor, digite seu telefone!" },
+            {
+              required: true,
+              message: "Por favor, insira sua data de nascimento!",
+            },
           ]}
         >
-          <Input className="smallInput" />
+          <DatePicker />
         </Form.Item>
-      </SmallInputContainer>
+      </Info>
+
       <Planos />
+      <p>
+        {" "}
+        <CustomIcon icon={<FaNotesMedical />} /> Sintomas
+      </p>
+      <Form.Item
+        name="descricaoPaciente"
+        rules={[
+          { required: true, message: "Por favor, descreva os sintomas!" },
+        ]}
+      >
+        <Input.TextArea
+          rows={4}
+          placeholder="Descreva o estado atual do paciente"
+        />
+      </Form.Item>
       <ButtonsContainer>
-        <StyledButton type="primary" htmlType="submit">
+        <StyledButton
+          type="primary"
+          htmlType="submit"
+          style={{ backgroundColor: "#847cd6" }}
+        >
           Cadastrar
         </StyledButton>
       </ButtonsContainer>
