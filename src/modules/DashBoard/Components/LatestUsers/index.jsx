@@ -60,7 +60,11 @@ const LatestUsers = () => {
       title: "Prontuario",
       key: "nome",
       render: (text, record) => (
-        <Button type="primary" onClick={() => showUserDetails(record)}>
+        <Button
+          type="primary"
+          style={{ backgroundColor: "#847cd6" }}
+          onClick={() => showUserDetails(record)}
+        >
           Ver Prontuário
         </Button>
       ),
