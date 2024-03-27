@@ -12,6 +12,13 @@ export const Content = styled.div`
   flex-direction: column;
   background-color: #fff;
   padding: 15px;
+  h3 {
+    color: #676a6c;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    font-weight: bold;
+  }
 `;
 export const SearchAndButtonContainer = styled.div`
   display: flex;

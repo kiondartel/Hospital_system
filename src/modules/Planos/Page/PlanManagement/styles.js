@@ -20,7 +20,7 @@ export const PlanName = styled.span`
 
 export const PlanValue = styled.span`
   font-size: 14px;
-  color: #008000;
+
   margin-left: 10px;
 `;
 
