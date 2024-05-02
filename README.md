@@ -1,4 +1,4 @@
-## Sistema de castro para Hospitais
+## Sistema completo para Hospitais
 This is my app \o/ 
 
 ## Technology 
