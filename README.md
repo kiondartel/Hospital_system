@@ -16,7 +16,5 @@ This is my app \o/
 * To run the project.
 - Yarn start
 
-## How to use
-
 
 
